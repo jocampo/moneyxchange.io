@@ -63,6 +63,11 @@ class StaticApp extends Component {
           });
           reactLocalStorage.set('jwtToken', tokenInfo);
           reactLocalStorage.set('authUser', user);
+        } else {
+      console.error(responseJson);
+          toast.error("Authentication failed. Error: "+ responseJson.status, {
+            position: toast.POSITION.TOP_CENTER
+          });         
         }
       } else {
 
