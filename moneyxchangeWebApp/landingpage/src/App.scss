@@ -1,0 +1,276 @@
+
+//-------------App Style ----------
+$font-stack:    Helvetica, sans-serif;
+$primary-color: #333;
+
+$teal-background: #009688;
+$light-teal-color:#E0F2F1;
+$division-color:#E0E0E0;
+
+body {
+  font: 100% Helvetica, sans-serif;
+  color: #333;
+  background-color:#FAFAFA;
+}
+.solid-background-one {
+  background-color: $teal-background;
+}
+.solid-background-two {
+  background-color: $light-teal-color;
+}
+
+//General
+
+//Header
+.logo {
+  margin-top:20px;
+  margin-bottom:20px;
+}
+.nav {
+  height:40px;
+  margin-bottom:20px;
+}
+.nav-inner { 
+  padding-top:10px;
+
+
+  a {
+    color:black;
+    border-bottom:1px solid #000;
+    text-decoration:none;
+  }
+
+  a.underlined
+  {
+   text-decoration:underline;
+  }
+  a:visited { 
+    border-bottom-color:rgba(255,255,255,0);
+  }
+
+  font-family: 'Oswald', sans-serif;
+
+  height: 40px;
+
+ 
+a {
+  text-decoration: none;
+  color: #fff;
+  display: block;
+  transition: .3s background-color;
+
+  background-color: $teal-background;
+  color:white;
+}
+ 
+a:hover {
+  background-color:#004D40;
+  color:white;
+}
+ 
+a.active {
+  background-color: #fff;
+  color: #444;
+  cursor: default;
+}
+}
+.nav-link {
+
+
+}
+//UsdEur
+.er-main {
+  height:150px;
+  padding-top:70px;
+  background-color:#80CBC4;
+}
+.amountTb {
+  min-width:50%;
+  max-width:80%;
+}
+
+.calcEr {
+  background-color:$teal-background;
+  -moz-border-radius:3px;
+  -webkit-border-radius:3px;
+  border-radius:3px;
+  cursor:pointer;
+  color:#ffffff;
+  font-family:Arial;
+  font-size:20px;
+  padding:10px 25px;
+  transition: .3s background-color;
+}
+.calcEr:hover {
+  background-color:#004D40;
+}
+.calcEr:active {
+  position:relative;
+  top:1px;
+}
+
+.er-secondary {
+  height:50px;
+  background-color:#80CBC4;
+
+  a {
+    text-decoration: none !important;
+  }
+
+  a:hover {
+    text-decoration: none !important;
+    color:white;
+  }
+
+}
+//Historic Prices
+.section-title-container {
+
+}
+.currency-container{
+  margin-bottom:5px;
+  margin-top:5px;
+  background-color:#F5F5F5;
+}
+.section-title{
+  line-height:50px;
+  font-size:1.2em;
+  color:#616161;
+  text-shadow: 0.5px 0.5px gray;
+}
+.price-image {
+  width:30px;
+  float:right;
+}
+.left-logo {
+  float:left;
+  width:30%;
+}
+.right-text{
+  float:left;
+  width:70%;
+}
+
+
+//Footer
+.pre-footer{
+  height:60px;
+}
+.footer{
+
+  background-color: #004D40;
+}
+footer{
+  padding: 1rem;
+  text-align: center;
+  color:white;
+  overflow:hidden;
+}
+.footer-div{
+  height:90px;
+}
+.footer-title{
+  line-height:30px;
+  font-size:1.2em;
+}
+.footer-subtitle{
+  font-size:5px;
+
+}
+.filler-footer{
+  list-style: none;
+  line-height:1em ;
+  padding:0px;
+  margin:0px;
+  font-size:0.9em;
+}
+//Section division
+.division {
+  background-color: $division-color;
+  height:7px;
+}
+
+//Login
+.login-page {
+  width: 360px;
+  padding: 8% 0 0;
+  margin: auto;
+}
+.form {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 360px;
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+.form button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #4CAF50;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+.form button:hover,.form button:active,.form button:focus {
+  background: #43A047;
+}
+.form .register-form {
+  display: none;
+}
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 300px;
+  margin: 0 auto;
+}
+.container:before, .container:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.container .info {
+  margin: 50px auto;
+  text-align: center;
+}
+.container .info h1 {
+  margin: 0 0 15px;
+  padding: 0;
+  font-size: 36px;
+  font-weight: 300;
+  color: #1a1a1a;
+}
+.container .info span {
+  color: #4d4d4d;
+  font-size: 12px;
+}
+.container .info span a {
+  color: #000000;
+  text-decoration: none;
+}
+.container .info span .fa {
+  color: #EF3B3A;
+}
+
+
+
+

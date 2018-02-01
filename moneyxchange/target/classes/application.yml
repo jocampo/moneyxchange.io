@@ -1,0 +1,29 @@
+server:
+  contextPath:
+spring:
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true
+  jpa:
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  datasource:
+    url: jdbc:mysql://0.0.0.0/moneyxchangeDB?autoReconnect=true&useSSL=false
+    username: root
+    password: password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+jwt:
+  header: Authorization
+  secret: mySecret
+  expiration: 604800
+  route:
+    authentication:
+      path: auth
+      refresh: refresh
+
+#logging:
+#  level:
+#    org.springframework:
+#      security: DEBUG
