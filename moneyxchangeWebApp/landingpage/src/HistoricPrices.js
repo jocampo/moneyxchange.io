@@ -17,6 +17,21 @@ export class HistoricPrices extends Component {
    callService(e){
     const url = BACKEND_URL + SERVICE_URL + "?base=USD";
     let rates=null;
+
+    const token = reactLocalStorage.get('jwtToken', null);
+    if(token == null) {
+      toast.error("An error occurred while trying to load the exchange rates information. Error: Token invalid, please log out and then log back in.", {
+        position: toast.POSITION.TOP_CENTER
+      });
+      return;
+    }
+
+    const historicFetchProps = {
+      method: 'GET',
+      headers: {'Content-Type':'application/json',
+                'Authorization': `Bearer ${token}`,
+                'Access-Control-Allow-Origin':'*'},
+    };
     fetch(url).then((response) => response.json())
     .then((responseJson) => {
       rates=responseJson.rates;

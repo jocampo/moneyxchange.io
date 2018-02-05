@@ -40,8 +40,7 @@ class StaticApp extends Component {
     const pass = this.state.password;
     const url = BACKEND_URL + SERVICE_URL;
 
-    fetch(url, {
-      credentials:true,
+    const loginFetchData = {
       crossDomain:true,
       method: 'POST',
       headers: {'Content-Type':'application/json'},
@@ -49,40 +48,83 @@ class StaticApp extends Component {
         username: user,
         password: pass,
       })
-    }).then((responseJson) => {
-      console.log(responseJson);
-      let tokenInfo = responseJson.token;
+    };
 
-      tokenInfo = 'test'; //To work around CORS not returning jwt
-      if(tokenInfo !== undefined) {
-        if(responseJson.status === 200){
-          //Cache the response data to remain authenticated
-          //Usually, we would cache the token and the authenticated user here
-          this.setState({
-            authUser:user
-          });
-          reactLocalStorage.set('jwtToken', tokenInfo);
-          reactLocalStorage.set('authUser', user);
-        } else {
-      console.error(responseJson);
-          toast.error("Authentication failed. Error: "+ responseJson.status, {
-            position: toast.POSITION.TOP_CENTER
-          });         
-        }
+    fetch(url, loginFetchData)
+    .then(response => {
+      if(response.status === 200){
+        return response.json();
       } else {
-
-      console.error(responseJson);
-          toast.error("Authentication failed. Error: "+ responseJson.status, {
-            position: toast.POSITION.TOP_CENTER
-          });
+        console.error(response);
+              toast.error("Authentication failed. Error: "+ response.status, {
+                position: toast.POSITION.TOP_CENTER
+              });
+        return null;
       }
-
     })
     .catch((error) => {
       console.error(error);
       toast.error("An error occurred while trying to perform the action. Please try again later.", {
-        position: toast.POSITION.TOP_CENTER
-      });
+        position: toast.POSITION.TOP_CENTER});
+    })
+    .then(response => {
+      if(response == null)
+        return;
+
+      const tokenInfo = response.token;
+
+      if(tokenInfo !== undefined) {
+          this.setState({
+             authUser:user
+           });
+           reactLocalStorage.set('jwtToken', tokenInfo);
+           reactLocalStorage.set('authUser', user);
+      }
+    });
+
+
+
+
+    // .then((responseJson) => {
+    //   console.log(responseJson);
+    //   let tokenInfo = responseJson.token;
+
+    //   tokenInfo = 'test'; //To work around CORS not returning jwt
+    //   if(tokenInfo !== undefined) {
+    //     if(responseJson.status === 200){
+    //       //Cache the response data to remain authenticated
+    //       //Usually, we would cache the token and the authenticated user here
+    //       this.setState({
+    //         authUser:user
+    //       });
+    //       reactLocalStorage.set('jwtToken', tokenInfo);
+    //       reactLocalStorage.set('authUser', user);
+    //     } else {
+    //   console.error(responseJson);
+    //       toast.error("Authentication failed. Error: "+ responseJson.status, {
+    //         position: toast.POSITION.TOP_CENTER
+    //       });         
+    //     }
+    //   } else {
+
+    //   console.error(responseJson);
+    //       toast.error("Authentication failed. Error: "+ responseJson.status, {
+    //         position: toast.POSITION.TOP_CENTER
+    //       });
+    //   }
+
+    // })
+    // .catch((error) => {
+    //   console.error(error);
+    //   toast.error("An error occurred while trying to perform the action. Please try again later.", {
+    //     position: toast.POSITION.TOP_CENTER
+    //   });
+  }  
+  handleLogout(event) {
+    reactLocalStorage.clear();
+    this.setState({
+      authUser:null
+
     });
   }
   render() {
@@ -107,9 +149,7 @@ class StaticApp extends Component {
    <div className="row">
       <div className="col text-center">
          <img src="/img/logo.png" className="logo"/>
-         <div><p>Welcome {authUser}!.</p> <a href="/" onClick={
-    reactLocalStorage.clear()
-         }>Logout</a></div>
+         <div><p>Welcome {authUser}!.</p> <a href="/" onClick={this.handleLogout.bind(this)}>Logout</a></div>
       </div>
    </div>
    <div className="row nav">
